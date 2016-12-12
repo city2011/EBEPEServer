@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+    <title>
+        阅读理解页面
+    </title>
+</head>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="css/read.css" rel="stylesheet" />
+<!--<script src="js/timecount.js"></script>-->
+<script>
+var se, m = 0,
+h = 0,
+s = 0,
+ss = 1,
+rindex = 0;
+var t ="";
+var recordt= new Array;
+
+function second() {
+if ((ss % 50) == 0) {
+s += 1;
+ss = 1;
+}
+if (s > 0 && (s % 60) == 0) {
+m += 1;
+s = 0;
+}
+if (m > 0 && (m % 60) == 0) {
+h += 1;
+m = 0;
+}
+t = h + "时" + m + "分" + s + "秒" + ss + "毫秒"; //时分秒运算
+document.getElementById("showtime").value = t;
+//这有一个给id为showtime的input赋值的语句，可以实现动态计时。
+//其实所谓的动态计时，就是在很短的时间里不停给显示时间的地方更新数值，由于速度很快，这样计时器看起来时刻都在变化。但其实不是的，它从本质上还是静态的，这跟js的伪多线程原理是一样的。
+ss += 1;
+}
+
+function startclock() {
+clearInterval(se);
+se = setInterval("second()", 20);
+} //这个函数是要放到按钮的click事件上的
+function pauseclock() {
+clearInterval(se);
+//document.getElementById("recordtime").value = t;
+recordt[rindex] = t;
+//document.getElementById("recordtime").value += recordt[rindex]+"\r\n";
+rindex++;
+} //这个函数是要放到按钮的click事件上的
+function stopclock() {
+clearInterval(se);
+ss = 1;
+m = h = s = rindex = 0;
+recordt = new Array;
+} //这个函数是要放到按钮的click事件上的
+function complete(){
+clearInterval(se);
+sessionStorage.setItem("readtime",t);
+sessionStorage.setItem("type",1);
+window.location.href ='qanda1.html';
+}
+
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #E4E1EA;
+    font: normal 17px/1.5 Calibri, Candara, Segoe, "华文中宋", "楷体", Optima, Arial, sans-serif;
+    color: #000;
+}
+</style>
+
+<body onload = "startclock()">
+    <div class="container">
+        <h1></h1>
+        <nav class="navbar navbar-inverse">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SDE</a>
+            </div>
+            <div id="navbar-menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">软件与数据工程研究中心</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content" class="row-fluid">
+            <div class="col-md-9">
+                <h2>伟大的摆渡手</h2>
+                <h4>
+            <br/>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp爸是一个很强壮的大汉。我和爸相依为命。从我出生那时起，似乎就只有这个男人在我身边。随着他手上的茧一层一层地加厚，我也一天一天地在摇晃的船上长大。<br/>
+　　我爸是一个好心的摆渡手，村里的人都这么说。我也一直这么自豪地认为。因为他摆渡只是为了能让每一个村里邻居部能安然地渡河，而从不收取一分钱，所以我和我爸的生活全靠那一亩田地。虽然生活拮据，然而我爸却使尽办法让我吃好的、穿暖的。我觉得只要有我爸在。我就是一个幸福的孩子。<br/><br>
+　　然而有一天，一个陌生的女子突然站在船舱外，我爸叫我唤她为“阿姨”。从此以后，这个“阿姨”便在我们狭窄的船舱里住下了。她对每个人都笑嘻嘻的，每次我爸在摆渡，她总会帮我爸擦汗，递水。<br/>
+　　可是我却不喜欢她，她占去了我爸太多的关注，这让我感觉到备受冷落。于是我干方百计扔掉她送给我的东西，不穿她做的衣服，不吃她做的饭菜。可是这样不仅没有得到爸的关切的问候，而且我爸狠狠地瞪我，要我听她的话。看着“阿姨”满脸的泪水，让我更加不知所措和莫名的愤怒。<br/>
+　　最终有一天，我半故意半失手地将“阿姨”推进了流水的旋涡里。我爸发疯似地跳进河水抱上了奄奄一息的“阿姨”。<br/><br>
+　　“我到底是不是你女儿？”随着爸爸抡起的巴掌落下，我声嘶力竭地喊了出来。<br/>
+　　“你不是我女儿！她才是你妈！”爸爸脸上的青筋暴起，对着我大吼。<br/>
+　　我转头望着躺在床上的她，呆呆地望着。许久，爸爸说话了: “十多年前，我还是一个在外打工的青年人，因为学历不高，所以连肚子都填不饱。于是万念俱灰，喝了几瓶酒便昏沉地往这条河里跳。当时天很黑，我以为没人知道，但是你爸，就是这艘船原来的主人，他用尽力气将我推上岸，自己却被奔腾的河水卷去了！当时她，就是你妈，抱着一个月的你失去了理智，她恨恨地将你扔在船舱里，之后就不知去向。经过河水的冲刷，醒来的我只看见船舱里的你。是我的错，而使你们美好的一家破裂。你的亲生父亲好心救了我，让我知道，人不能为自己而活，能帮助人，甚至失去生命也并不可借！”爸爸泣不成声。<br><br>
+　　于是我面前的爸爸就拿起了船桨，日复一日地渡人过河。我终于能理解他为什么每次都会那么奋不顾身地跳下河去救落水的人，甚至是落水的物品。他是怀着一颗感恩的心去面对周围的一切。<br/>
+　　“你爸的精神一直鼓舞着我。我将你养大；又四处找你妈。乞求她的原谅，并用我的真心和时间等待她的归来，真真正正地做你的爸爸！”我爸握着我“阿姨”的手。
+　　“我记住了你爸对我的救命之恩，他让我学会了爱别人，帮助别人！”我爸的这句话从此时时在我耳边回荡。<br/><br>
+　　我爸是一个摆渡手。我的爸爸是伟大的摆渡手。
+       <br/>
+       <br/><br>
+    <div align="center">
+    <button class="butt"  align="center" onclick="complete()">下一步</button>
+    </div>
+　　</h4>
+            </div>
+            <div class="col-md-3">
+                <h3>广告位</h3>
+                <br/>
+                <img src="pic/ad1.jpg" width="100%">
+                <br/>
+                <input name="showtime" style="color:#ff0000;width:200px;" id="showtime" type="text" value="0时0分0秒">
+                <!-- <img src="pic/ad2.jpg" width="100%"> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

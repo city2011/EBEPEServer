@@ -8,7 +8,9 @@
  * 连接数据库所需的DNS、用户名、密码等，一般情况不会在代码中进行更改，
  * 所以使用常量的形式，可以避免在函数中引用而需要global。
  */
-define('SESSION_DNS', 'mysql:host=localhost/ebepe;dbname=ebepe;charset=utf8mb4');
+error_reporting(0);
+
+define('SESSION_DNS', 'mysql:host=localhost;dbname=ebepe;charset=utf8mb4');
 define('SESSION_USR', 'root');
 define('SESSION_PWD', '8vDesPy4yx1WKxTb');
 define('SESSION_MAXLIFETIME', get_cfg_var('session.gc_maxlifetime'));
@@ -80,15 +82,12 @@ function sessionMysqlWrite($sessionId, $data) {
     try {
         $dbh = getConnection();
         $expire = time() + SESSION_MAXLIFETIME;
-
         $sql = 'INSERT INTO `session` (`skey`, `data`, `expire`) '
             . 'values (?, ?, ?) '
             . 'ON DUPLICATE KEY UPDATE data = ?, expire = ?';
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array($sessionId, $data, $expire, $data, $expire));
-        return 0;
     } catch (Exception $e) {
-        return 1;
         echo $e->getMessage();
     }
 }
@@ -97,7 +96,6 @@ function sessionMysqlWrite($sessionId, $data) {
 function sessionMysqlDestroy($sessionId) {
     try {
         $dbh = getConnection();
-
         $sql = 'DELETE FROM `session` where skey = ?';
         $stmt = $dbh->prepare($sql);
         $stmt->execute(array($sessionId));
@@ -108,14 +106,14 @@ function sessionMysqlDestroy($sessionId) {
 }
 
 //自定义的session的gc函数
+//不做清理工作，数据留存
 function sessionMysqlGc($lifetime) {
     try {
-        $dbh = getConnection();
-
-        $sql = 'DELETE FROM `session` WHERE expire < ?';
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute(array(time()));
-        $dbh = NULL;
+//        $dbh = getConnection();
+//        $sql = 'DELETE FROM `session` WHERE expire < ?';
+//        $stmt = $dbh->prepare($sql);
+//        $stmt->execute(array(time()));
+//        $dbh = NULL;
         return TRUE;
     } catch (Exception $e) {
         return FALSE;
