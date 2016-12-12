@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="animate.css">
+    <link href='google-font.css?family=Roboto:400,100,400italic,700italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="wrap">
+        <span id="animationSandbox" style="display: block;"><h1 class="site__title mega animated lightSpeedOut">进入阅读理解</h1></span>
+        <br/>
+        <br/>
+        <span class="beta subhead">1.请阅读文档，阅读完成后会有两个关于文档的小问题。</span>
+        <br/>
+        <span class="beta subhead">2.阅读完成后，点击已完成进入答题页面。</span>
+        <br/>
+        <span class="beta subhead">3.点击结束按钮，完成本次测验。</span>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <button class="butt js--triggerAnimation">下一步</button>
+</body>
+<script src="jquery-1.10.2.min.js"></script>
+<script>
+
+function testAnim(x) {
+    $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        var url = new Array();
+        url[0] = "reading.html";
+        url[1] = "reading2.html";
+        // url[2] = "reading3.html";
+        var ints = parseInt(Math.random() * (url.length));
+        
+          window.location.href=url[ints];
+    });
+};
+
+
+$(document).ready(function() {
+
+    $('.js--triggerAnimation').click(function(e) {
+
+        e.preventDefault();
+
+        var anim = "swing";
+
+        testAnim(anim);
+
+    });
+
+
+    $('.js--animations').change(function() {
+
+        var anim = $(this).val();
+
+        testAnim(anim);
+
+    });
+
+});
+</script>
+
+</html>

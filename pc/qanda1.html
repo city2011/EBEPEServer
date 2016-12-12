@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="css/read.css" rel="stylesheet" />
+<script src='jquery-1.10.2.min.js'></script>
+<script type="text/javascript">
+var first = 0;
+var second = 0;
+function alertradio(){
+	alert($("input[name='radio1']:checked").val());
+}
+function get_radio() {
+
+    // alert(sessionStorage.getItem("readtime"));
+    first = $("input[name='radio1']:checked").val();
+    second = $("input[name='radio2']:checked").val();
+    
+    if (first == null || second == null) {
+        alert("请为每个测试至少选择1个选项 !");
+    } else {
+       // going on
+     sessionStorage.setItem("esradio1", first);
+     sessionStorage.setItem("esradio2",second);
+    window.location.href="ans1.html";
+    }
+
+    // }
+}
+</script>
+
+<head>
+    <title>来答几个小问题吧</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-color: #E4E1EA;
+        font: normal 25px/1.5 Calibri, Candara, Segoe, "华文中宋", "楷体", Optima, Arial, sans-serif;
+        color: #000;
+    }
+    
+    .wrapper {
+        text-align: left;
+        width: 1200px;
+        margin: 20px auto;
+    }
+    
+    p {
+        margin: 15px 0 5px 0;
+    }
+    
+    ul {
+        list-style: none
+    }
+    
+    li span {
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    strong {
+        font-weight: bold;
+    }
+    
+    .radio-btn input[type="radio"],
+    .check-box input[type="checkbox"] {
+        visibility: hidden;
+    }
+    
+    .radio-btn {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        float: left;
+        margin-right: 5px;
+        cursor: pointer;
+        position: relative;
+        -webkit-border-radius: 90%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        border: 1px solid #E1E2E4;
+        box-shadow: 0 0 1px #ccc;
+        background: rgb(255, 255, 255);
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+        background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+        background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+        background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+    }
+    
+    .checkedRadio {
+        -moz-box-shadow: inset 0 0 5px 1px #ccc;
+        -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+        box-shadow: inset 0 0 5px 1px #ccc;
+    }
+    
+    .radio-btn i {
+        border: 1px solid #E1E2E4;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+    }
+    
+    .checkedRadio i {
+        background-color: #898A8C;
+    }
+    </style>
+    <!--<script src="js/prefixfree.min.js"></script>-->
+</head>
+
+<body>
+    <div class="container">
+        <h1></h1>
+        <nav class="navbar navbar-inverse">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="font-size: 20px" class="navbar-brand" href="#">SDE</a>
+            </div>
+            <div id="navbar-menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a style="font-size: 20px" href="#">软件与数据工程研究中心</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="wrapper">
+            <ul>
+                <li>
+                    <p>第一个问题: 下列哪个选项是错误的</p>
+                </li>
+                <li>
+                    <input name="radio1" type="radio" class="radio-btn" value="A" />A. 文中的爸爸是摆渡手</li>
+                <li>
+                    <input name="radio1" type="radio" class="radio-btn" value="B" />B. 文中的“阿姨”是作者的妈妈</li>
+                <li>
+                    <input name="radio1" type="radio" class="radio-btn" value="C" />C. 文中的爸爸是作者的亲生父亲</li>
+                <li>
+                    <input name="radio1" type="radio" class="radio-btn" value="D" />D. 文中表达了帮助别人的价值观</li>
+            </ul>
+            <br/>
+            <ul>
+                <li>
+                    <p>第二个问题：谁救了摆渡手</p>
+                </li>
+                <li>
+                    <input name="radio2" type="radio" class="radio-btn" value="A" />A. </li>
+                <li>
+                    <input name="radio2" type="radio" class="radio-btn" value="B" />B. </li>
+                <li>
+                    <input name="radio2" type="radio" class="radio-btn" value="C" />C. </li>
+                <li>
+                    <input name="radio2" type="radio" class="radio-btn" value="D" />D. </li>
+            </ul>
+            <br/>
+            <br/>
+            <!-- <div align="center"> -->
+            <button class="butt" align="center" onclick="get_radio()">下一步</button>
+            <!-- </div> -->
+        </div>
+        <!--<div style="text-align:center;clear:both">-->
+        <!--<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>-->
+        <!--<script src="/follow.js" type="text/javascript"></script>-->
+    </div>
+    
+    <!--<script src="js/index.js"></script>-->
+</body>
+
+</html>
