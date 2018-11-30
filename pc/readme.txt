@@ -1,10 +1,2 @@
-sessionStorage 键值对
-esradio1
-esradio2
-adradio1
-adradio2
-adname
-age
-gender
-readtime
-type
+EBEPEServer is a simple web-project which collect user reading time on website and their probability rememering ads on website.
+Using selfly for science research.
